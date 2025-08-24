@@ -6,20 +6,25 @@ import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
 import { services } from "../utils/Data";
-import prodcompare from "../images/prodcompare.svg";
-import wish from "../images/wish.svg";
-import wishlist from "../images/wishlist.svg";
-import watch from "../images/watch.jpg";
-import watch2 from "../images/watch-1.avif";
-import addcart from "../images/add-cart.svg";
-import view from "../images/view.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogs } from "../features/blogs/blogSlice";
 import moment from "moment";
 import { getAllProducts } from "../features/products/productSlilce";
 import ReactStars from "react-rating-stars-component";
 import { addToWishlist } from "../features/products/productSlilce";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { 
+  BsPhone, 
+  BsLaptop, 
+  BsHeadphones, 
+  BsDisplay, 
+  BsWifi, 
+  BsController,
+  BsArrowLeft,
+  BsArrowRight,
+  BsStarFill,
+  BsClock,
+  BsHeart
+} from "react-icons/bs";
 
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blog);
@@ -32,6 +37,7 @@ const Home = () => {
     getblogs();
     getProducts();
   }, []);
+
   const getblogs = () => {
     dispatch(getAllBlogs());
   };
@@ -41,97 +47,167 @@ const Home = () => {
   };
 
   const addToWish = (id) => {
-    //alert(id);
     dispatch(addToWishlist(id));
   };
+
+  // Categories data
+  const categories = [
+    { icon: <BsPhone />, name: "Phones" },
+    { icon: <BsLaptop />, name: "Computers" },
+    { icon: <BsHeadphones />, name: "Accessories" },
+    { icon: <BsLaptop />, name: "Laptops" },
+    { icon: <BsDisplay />, name: "Monitors" },
+    { icon: <BsWifi />, name: "Networking" },
+    { icon: <BsController />, name: "PC Gaming" },
+  ];
+
   return (
     <>
+      {/* Hero Section */}
       <Container class1="home-wrapper-1 py-5">
-        <div className="row">
-          <div className="col-6">
-            <div className="main-banner position-relative ">
-              <img
-                src="images/main-banner-1.jpg"
-                className="img-fluid rounded-3"
-                alt="main banner"
-              />
-              <div className="main-banner-content position-absolute">
-                <h4>SUPERCHARGED FOR PROS.</h4>
-                <h5>iPad S13+ Pro.</h5>
-                <p>From Rs. 81,900.00 </p>
-                <Link className="button">BUY NOW</Link>
+        <div className="row align-items-center">
+          <div className="col-12 col-lg-6 mb-4 mb-lg-0">
+            <div className="main-banner position-relative">
+              <div className="hero-content p-4 p-lg-5">
+                <div className="new-product-badge mb-3">
+                  <span className="badge bg-primary px-3 py-2 rounded-pill">
+                    New Product
+                  </span>
+                </div>
+                <h1 className="display-4 fw-bold mb-3">
+                  Roco Wireless Headphone
+                </h1>
+                <p className="lead mb-4">
+                  Experience crystal clear sound with our premium wireless headphones
+                </p>
+                <Link className="button d-inline-flex align-items-center gap-2">
+                  <BsController />
+                  Shop Now
+                </Link>
+                <div className="social-proof mt-4 d-flex align-items-center gap-3">
+                  <div className="d-flex align-items-center gap-1">
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png" 
+                      alt="user" 
+                      className="rounded-circle"
+                      style={{ width: '30px', height: '30px' }}
+                    />
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png" 
+                      alt="user" 
+                      className="rounded-circle"
+                      style={{ width: '30px', height: '30px' }}
+                    />
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png" 
+                      alt="user" 
+                      className="rounded-circle"
+                      style={{ width: '30px', height: '30px' }}
+                    />
+                  </div>
+                  <div className="d-flex align-items-center gap-1">
+                    <BsStarFill className="text-warning" />
+                    <BsStarFill className="text-warning" />
+                    <BsStarFill className="text-warning" />
+                    <BsStarFill className="text-warning" />
+                    <BsStarFill className="text-warning" />
+                    <span className="ms-1 fw-semibold">100+ Reviews</span>
+                  </div>
+                </div>
               </div>
+              {/* <div className="hero-image position-absolute top-0 end-0 h-100 w-50 d-none d-lg-block">
+                <div className="position-relative h-100">
+                  <img
+                    src="images/headphone.jpg"
+                    className="img-fluid position-absolute top-50 end-0 translate-middle-y"
+                    alt="headphone"
+                    style={{ maxWidth: '80%', zIndex: 2 }}
+                  />
+                  <div className="price-tag position-absolute top-25 end-25 bg-primary text-white px-3 py-2 rounded-pill">
+                    From $48.00
+                  </div>
+                  <img
+                    src="images/watch.jpg"
+                    className="img-fluid position-absolute bottom-25 end-25"
+                    alt="watch"
+                    style={{ maxWidth: '40%', zIndex: 1 }}
+                  />
+                </div>
+              </div> */}
             </div>
           </div>
-          <div className="col-6">
-            <div className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
-              <div className="small-banner position-relative">
-                <img
-                  src="images/catbanner-01.jpg"
-                  className="img-fluid rounded-3"
-                  alt="main banner"
-                />
-                <div className="small-banner-content position-absolute">
-                  <h4>Best Sake</h4>
-                  <h5>MacBook Pro.</h5>
-                  <p>
-                    From Rs. 1,29,900.00 <br />
-                  </p>
+          
+          <div className="col-12 col-lg-6">
+            <div className="row g-3">
+              <div className="col-6">
+                <div className="small-banner position-relative">
+                  <img
+                    src="images/catbanner-01.jpg"
+                    className="img-fluid rounded-3"
+                    alt="MacBook Pro"
+                  />
+                  <div className="small-banner-content">
+                    <h4>Best Sale</h4>
+                    <h5>MacBook Pro</h5>
+                    <p>From Rs. 1,29,900.00</p>
+                  </div>
                 </div>
               </div>
-              <div className="small-banner position-relative">
-                <img
-                  src="images/catbanner-02.jpg"
-                  className="img-fluid rounded-3"
-                  alt="main banner"
-                />
-                <div className="small-banner-content position-absolute">
-                  <h4>NEW ARRIVAL</h4>
-                  <h5>But IPad Air</h5>
-                  <p>
-                    From Rs. 21,625.00 <br />
-                  </p>
+              <div className="col-6">
+                <div className="small-banner position-relative">
+                  <img
+                    src="images/catbanner-02.jpg"
+                    className="img-fluid rounded-3"
+                    alt="iPad Air"
+                  />
+                  <div className="small-banner-content">
+                    <h4>NEW ARRIVAL</h4>
+                    <h5>Buy iPad Air</h5>
+                    <p>From Rs. 21,625.00</p>
+                  </div>
                 </div>
               </div>
-              <div className="small-banner position-relative ">
-                <img
-                  src="images/catbanner-03.jpg"
-                  className="img-fluid rounded-3"
-                  alt="main banner"
-                />
-                <div className="small-banner-content position-absolute">
-                  <h4>NEW ARRIVAL</h4>
-                  <h5>But IPad Air</h5>
-                  <p>
-                    From Rs. 41,900.00 <br />
-                  </p>
+              <div className="col-6">
+                <div className="small-banner position-relative">
+                  <img
+                    src="images/catbanner-03.jpg"
+                    className="img-fluid rounded-3"
+                    alt="iPad"
+                  />
+                  <div className="small-banner-content">
+                    <h4>NEW ARRIVAL</h4>
+                    <h5>Buy iPad</h5>
+                    <p>From Rs. 41,900.00</p>
+                  </div>
                 </div>
               </div>
-              <div className="small-banner position-relative ">
-                <img
-                  src="images/catbanner-04.jpg"
-                  className="img-fluid rounded-3"
-                  alt="main banner"
-                />
-                <div className="small-banner-content position-absolute">
-                  <h4>NEW ARRIVAL</h4>
-                  <h5>But Headphone</h5>
-                  <p>
-                    From Rs. 41,000.00 <br />
-                  </p>
+              <div className="col-6">
+                <div className="small-banner position-relative">
+                  <img
+                    src="images/catbanner-04.jpg"
+                    className="img-fluid rounded-3"
+                    alt="Headphone"
+                  />
+                  <div className="small-banner-content">
+                    <h4>NEW ARRIVAL</h4>
+                    <h5>Buy Headphone</h5>
+                    <p>From Rs. 41,000.00</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </Container>
+
+      {/* Services Section */}
       <Container class1="home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
-            <div className="servies d-flex align-items-center justify-content-between">
+            <div className="servies d-flex align-items-center justify-content-between flex-wrap">
               {services?.map((i, j) => {
                 return (
-                  <div className="d-flex align-items-center gap-15" key={j}>
+                  <div className="d-flex align-items-center gap-3" key={j}>
                     <img src={i.image} alt="services" />
                     <div>
                       <h6>{i.title}</h6>
@@ -144,86 +220,131 @@ const Home = () => {
           </div>
         </div>
       </Container>
-      {/* <Container class1="home-wrapper-2 py-5">
+
+      {/* Categories Section */}
+      <Container class1="categories-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
-            <div className="categories d-flex justify-content-between flex-wrap align-items-center">
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Music & Gaming</h6>
-                  <p>10 Items</p>
+            <div className="d-flex align-items-center justify-content-between mb-4">
+              <div className="d-flex align-items-center gap-2">
+                <div className="category-icon bg-primary text-white p-2 rounded">
+                  <BsLaptop />
                 </div>
-                <img src="images/camera.jpg" alt="camera" />
+                <h3 className="section-heading mb-0">Browse by Category</h3>
               </div>
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Cameras</h6>
-                  <p>10 Items</p>
+              <div className="d-flex gap-2">
+                <button className="btn btn-outline-primary rounded-circle">
+                  <BsArrowLeft />
+                </button>
+                <button className="btn btn-outline-primary rounded-circle">
+                  <BsArrowRight />
+                </button>
+              </div>
+            </div>
+            <div className="categories-grid d-flex gap-3 overflow-auto">
+              {categories.map((category, index) => (
+                <div key={index} className="category-card text-center p-3 bg-white rounded-3 shadow-sm border">
+                  <div className="category-icon mb-2">
+                    <div className="bg-light p-3 rounded-circle d-inline-flex align-items-center justify-content-center">
+                      {React.cloneElement(category.icon, { size: 24, className: 'text-primary' })}
+                    </div>
+                  </div>
+                  <h6 className="mb-0 fw-semibold">{category.name}</h6>
                 </div>
-                <img src="images/camera.jpg" alt="camera" />
-              </div>
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Smart Tv</h6>
-                  <p>10 Items</p>
-                </div>
-                <img src="images/tv.jpg" alt="camera" />
-              </div>
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Smart Watches</h6>
-                  <p>10 Items</p>
-                </div>
-                <img src="images/headphone.jpg" alt="camera" />
-              </div>
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Music & Gaming</h6>
-                  <p>10 Items</p>
-                </div>
-                <img src="images/camera.jpg" alt="camera" />
-              </div>
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Cameras</h6>
-                  <p>10 Items</p>
-                </div>
-                <img src="images/camera.jpg" alt="camera" />
-              </div>
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Smart Tv</h6>
-                  <p>10 Items</p>
-                </div>
-                <img src="images/tv.jpg" alt="camera" />
-              </div>
-              <div className="d-flex gap align-items-center">
-                <div>
-                  <h6>Smart Watches</h6>
-                  <p>10 Items</p>
-                </div>
-                <img src="images/headphone.jpg" alt="camera" />
-              </div>
+              ))}
             </div>
           </div>
         </div>
-      </Container> */}
+      </Container>
+
+      {/* Special Offer Section */}
+      <Container class1="special-offer-wrapper py-5 home-wrapper-2">
+        <div className="row align-items-center">
+          <div className="col-12 col-lg-6 mb-4 mb-lg-0">
+            <div className="special-offer-content">
+              <div className="d-flex align-items-center gap-2 mb-3">
+                <div className="offer-badge bg-primary text-white px-3 py-1 rounded-pill">
+                  Don't Miss!
+                </div>
+              </div>
+              <h2 className="display-6 fw-bold mb-3">
+                Enhance Your Music Experience
+              </h2>
+              <div className="countdown-timer d-flex gap-3 mb-4">
+                <div className="countdown-item text-center">
+                  <div className="bg-primary text-white rounded p-2">
+                    <span className="fw-bold">15</span>
+                  </div>
+                  <small className="text-muted">Day</small>
+                </div>
+                <div className="countdown-item text-center">
+                  <div className="bg-primary text-white rounded p-2">
+                    <span className="fw-bold">10</span>
+                  </div>
+                  <small className="text-muted">Hrs</small>
+                </div>
+                <div className="countdown-item text-center">
+                  <div className="bg-primary text-white rounded p-2">
+                    <span className="fw-bold">56</span>
+                  </div>
+                  <small className="text-muted">Min</small>
+                </div>
+                <div className="countdown-item text-center">
+                  <div className="bg-primary text-white rounded p-2">
+                    <span className="fw-bold">54</span>
+                  </div>
+                  <small className="text-muted">Sec</small>
+                </div>
+              </div>
+              <Link className="button">
+                Check it Out!
+              </Link>
+            </div>
+          </div>
+          <div className="col-12 col-lg-6">
+            <div className="special-offer-image text-center">
+              <img
+                src="images/headphone.jpg"
+                className="img-fluid"
+                alt="Special Headphone"
+                style={{ maxHeight: '400px' }}
+              />
+            </div>
+          </div>
+        </div>
+      </Container>
+
+      {/* Featured Products Section */}
       <Container class1="featured-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
-            <h3 className="section-heading">Featured Collection</h3>
+            <div className="d-flex align-items-center justify-content-between mb-4">
+              <div className="d-flex align-items-center gap-2">
+                <div className="category-icon bg-primary text-white p-2 rounded">
+                  <BsStarFill />
+                </div>
+                <h3 className="section-heading mb-0">Explore our Products</h3>
+              </div>
+              <div className="d-flex gap-2">
+                <button className="btn btn-outline-primary rounded-circle">
+                  <BsArrowLeft />
+                </button>
+                <button className="btn btn-outline-primary rounded-circle">
+                  <BsArrowRight />
+                </button>
+              </div>
+            </div>
           </div>
           {productState &&
             productState?.map((item, index) => {
               if (item.tags === "featured") {
                 return (
-                  <div key={index} className={"col-3"}>
+                  <div key={index} className="col-6 col-md-4 col-lg-3 mb-4">
                     <div className="product-card position-relative">
                       <div className="wishlist-icon position-absolute">
                         <button className="border-0 bg-transparent">
-                          <img
-                            src={wish}
-                            alt="wishlist"
+                          <BsHeart
+                            className="text-muted"
                             onClick={(e) => {
                               addToWish(item?._id);
                             }}
@@ -233,51 +354,39 @@ const Home = () => {
                       <div className="product-image">
                         <img
                           src={item?.images[0]?.url}
-                          //className="img-fluid d"
                           alt="product image"
-                          height={"250px"}
-                          width={"260px"}
+                          className="img-fluid"
                           onClick={() => navigate("/product/" + item?._id)}
                         />
-                        <img
-                          src={item?.images[0]?.url}
-                          //className="img-fluid d"
-                          alt="product image"
-                          height={"250px"}
-                          width={"260px"}
-                          onClick={() => navigate("/product/" + item?._id)}
-                        />
+                        <div className="discount-badge position-absolute top-0 end-0 bg-primary text-white px-2 py-1 rounded">
+                          30% Off
+                        </div>
                       </div>
                       <div className="product-details">
                         <h6 className="brand">{item?.brand}</h6>
                         <h5 className="product-title">
                           {item?.title?.substr(0, 70) + "..."}
                         </h5>
-                        <ReactStars
-                          count={5}
-                          size={24}
-                          value={item?.totalrating.toString()}
-                          edit={false}
-                          activeColor="#ffd700"
-                        />
-
-                        <p className="price">Rs. {item?.price}</p>
-                      </div>
-                      <div className="action-bar position-absolute">
-                        <div className="d-flex flex-column gap-15">
-                          {/* <button className="border-0 bg-transparent">
-                            <img src={prodcompare} alt="compare" />
-                          </button>
-                          <button className="border-0 bg-transparent">
-                            <img
-                              onClick={() => navigate("/product/" + item?._id)}
-                              src={view}
-                              alt="view"
-                            />
-                          </button> */}
-                          {/* <button className="border-0 bg-transparent">
-                            <img src={addcart} alt="addcart" />
-                          </button> */}
+                        <div className="d-flex align-items-center gap-1 mb-2">
+                          <ReactStars
+                            count={5}
+                            size={16}
+                            value={item?.totalrating.toString()}
+                            edit={false}
+                            activeColor="#ffc107"
+                          />
+                          <span className="text-muted small">({item?.totalrating || 0})</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 mb-2">
+                          <p className="price mb-0">Rs. {item?.price}</p>
+                          <p className="text-muted text-decoration-line-through mb-0 small">
+                            Rs. {Math.round(item?.price * 1.3)}
+                          </p>
+                        </div>
+                        <div className="color-options d-flex gap-1">
+                          <div className="color-option bg-danger rounded-circle" style={{ width: '20px', height: '20px' }}></div>
+                          <div className="color-option bg-dark rounded-circle" style={{ width: '20px', height: '20px' }}></div>
+                          <div className="color-option bg-light border rounded-circle" style={{ width: '20px', height: '20px' }}></div>
                         </div>
                       </div>
                     </div>
@@ -286,11 +395,19 @@ const Home = () => {
               }
             })}
         </div>
+        <div className="row">
+          <div className="col-12 text-center">
+            <Link className="btn btn-outline-primary px-4 py-2">
+              View All Products
+            </Link>
+          </div>
+        </div>
       </Container>
 
+      {/* Famous Cards Section */}
       <Container class1="famous-wrapper py-5 home-wrapper-2">
         <div className="row">
-          <div className="col-3">
+          <div className="col-6 col-md-3 mb-4">
             <div className="famous-card position-relative">
               <img
                 src="images/famous-1.webp"
@@ -304,7 +421,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-6 col-md-3 mb-4">
             <div className="famous-card position-relative">
               <img
                 src="images/famous-2.webp"
@@ -318,7 +435,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-6 col-md-3 mb-4">
             <div className="famous-card position-relative">
               <img
                 src="images/famous-3.webp"
@@ -332,10 +449,10 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-6 col-md-3 mb-4">
             <div className="famous-card position-relative">
               <img
-                src="images/famous-3.webp"
+                src="images/famous-4.webp"
                 className="img-fluid"
                 alt="famous"
               />
@@ -349,6 +466,7 @@ const Home = () => {
         </div>
       </Container>
 
+      {/* Special Products Section */}
       <Container class1="special-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -359,7 +477,6 @@ const Home = () => {
           {productState &&
             productState?.map((item, index) => {
               if (item.tags === "special") {
-                //console.log(item?._id);
                 return (
                   <SpecialProduct
                     key={index}
@@ -377,6 +494,8 @@ const Home = () => {
             })}
         </div>
       </Container>
+
+      {/* Popular Products Section */}
       <Container class1="popular-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -388,13 +507,12 @@ const Home = () => {
             productState?.map((item, index) => {
               if (item.tags === "popular") {
                 return (
-                  <div key={index} className={"col-3"}>
+                  <div key={index} className="col-6 col-md-4 col-lg-3 mb-4">
                     <div className="product-card position-relative">
                       <div className="wishlist-icon position-absolute">
                         <button className="border-0 bg-transparent">
-                          <img
-                            src={wish}
-                            alt="wishlist"
+                          <BsHeart
+                            className="text-muted"
                             onClick={(e) => {
                               addToWish(item?._id);
                             }}
@@ -404,18 +522,8 @@ const Home = () => {
                       <div className="product-image">
                         <img
                           src={item?.images[0].url}
-                          // className="img-fluid d"
                           alt="product image"
-                          height={"250px"}
-                          width={"100%"}
-                          onClick={() => navigate("/product/" + item?._id)}
-                        />
-                        <img
-                          src={item?.images[0].url}
-                          // className="img-fluid d"
-                          alt="product image"
-                          height={"250px"}
-                          width={"100%"}
+                          className="img-fluid"
                           onClick={() => navigate("/product/" + item?._id)}
                         />
                       </div>
@@ -424,32 +532,17 @@ const Home = () => {
                         <h5 className="product-title">
                           {item?.title?.substr(0, 70) + "..."}
                         </h5>
-                        <ReactStars
-                          count={5}
-                          size={24}
-                          value={item?.totalrating.toString()}
-                          edit={false}
-                          activeColor="#ffd700"
-                        />
-
-                        <p className="price">Rs. {item?.price}</p>
-                      </div>
-                      <div className="action-bar position-absolute">
-                        <div className="d-flex flex-column gap-15">
-                          {/* <button className="border-0 bg-transparent">
-                            <img src={prodcompare} alt="compare" />
-                          </button> */}
-                          {/* <button className="border-0 bg-transparent">
-                            <img
-                              onClick={() => navigate("/product/" + item?._id)}
-                              src={view}
-                              alt="view"
-                            />
-                          </button> */}
-                          {/* <button className="border-0 bg-transparent">
-                            <img src={addcart} alt="addcart" />
-                          </button> */}
+                        <div className="d-flex align-items-center gap-1 mb-2">
+                          <ReactStars
+                            count={5}
+                            size={16}
+                            value={item?.totalrating.toString()}
+                            edit={false}
+                            activeColor="#ffc107"
+                          />
+                          <span className="text-muted small">({item?.totalrating || 0})</span>
                         </div>
+                        <p className="price">Rs. {item?.price}</p>
                       </div>
                     </div>
                   </div>
@@ -458,6 +551,8 @@ const Home = () => {
             })}
         </div>
       </Container>
+
+      {/* Brand Marquee Section */}
       <Container class1="marque-wrapper home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
@@ -493,6 +588,7 @@ const Home = () => {
         </div>
       </Container>
 
+      {/* Blog Section */}
       <Container class1="blog-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -504,7 +600,7 @@ const Home = () => {
             blogState?.map((item, index) => {
               if (index < 4) {
                 return (
-                  <div className="col-3 " key={index}>
+                  <div className="col-6 col-md-3 mb-4" key={index}>
                     <BlogCard
                       id={item?._id}
                       title={item?.title}
